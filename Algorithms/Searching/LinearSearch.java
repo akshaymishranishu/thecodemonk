@@ -1,3 +1,6 @@
+//Time complexity: O(n)
+//Space complexity: O(n)
+
 package Algorithms.Searching;
 
 import java.io.BufferedReader;
@@ -22,8 +25,8 @@ public class LinearSearch {
 
         System.out.println("Enter size of array");
         size = Integer.parseInt(br.readLine());  
-
         int arr[] = new int[size];
+        
         System.out.println("Enter values");
         for(int i=0; i<size; i++) {
             arr[i] = Integer.parseInt(br.readLine());
