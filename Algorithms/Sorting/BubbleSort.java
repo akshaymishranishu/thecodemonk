@@ -28,26 +28,33 @@ public class BubbleSort {
     }
 
     //Time complexity: O(n^2)
-    //Space complexity: O(n^2)
+    //Space complexity: O(n)
     private static void recursiveSort(int arr[], int i, int n) {
         if(i < n-1) {
-            swapping(arr, 0, n-1-i);
-            recursiveSort(arr, i+1, n);
+            boolean swapped = false;
+            swapped = swapping(arr, 0, n-1-i, swapped);
+            
+            if(swapped) {
+                recursiveSort(arr, i+1, n);
+            } else {
+                return;
+            }
         }
 
         return;
     }
 
-    private static void swapping(int arr[], int j, int m) {
+    private static boolean swapping(int arr[], int j, int m, boolean swapped) {
         if(j < m) {
             if(arr[j] > arr[j+1]) {
                 int temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
+                swapped = true;
             }
-            swapping(arr, j+1, m);
+            return swapping(arr, j+1, m, swapped);
         }
-        return;
+        return swapped;
     }
     
     public static void main(String args[]) throws IOException{
