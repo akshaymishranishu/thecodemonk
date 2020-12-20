@@ -8,6 +8,25 @@ public class ArrayRotation {
 
     //Time complexity: O(n)  
     //Space complexity: O(1)
+    private static void rotateWithReversalTechnique(int arr[], int d, int n) {
+        d = d%n; //handle d > n case
+
+        reverse(arr, 0, d-1);
+        reverse(arr, d, n-1);
+        reverse(arr, 0, n-1);
+    }
+
+    private static void reverse(int arr[], int left, int right) {
+        if(left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            reverse(arr, left+1, right-1);
+        }
+    }
+
+    //Time complexity: O(n)  
+    //Space complexity: O(1)
     private static void rotateArray(int arr[], int d, int n) {
         d = d%n; //handle d > n case
 
@@ -57,7 +76,19 @@ public class ArrayRotation {
         System.out.println("Enter no of elements to be rotated from begining");
         int d = Integer.parseInt(br.readLine());
 
-        rotateArray(arr, d, size);
+        System.out.println("Choose algo:" + "\n" + "1.Juggling Algorithm" + "\n" + "2.Reversal Technique");
+        int choice = Integer.parseInt(br.readLine());
+
+        switch(choice) {
+            case 1:
+                rotateArray(arr, d, size);
+                break;
+            case 2:
+                rotateWithReversalTechnique(arr, d, size);
+                break;
+            default:
+                System.out.println("Entered the wrong option");        
+        }
 
         System.out.println("Rotated array");
         for(int i = 0; i < size; i++) {
